@@ -7,12 +7,13 @@ Este documento proporciona una guía paso a paso para configurar tu sistema Linu
 
 **Índice de Contenido**
 
-1.  Requisitos Previos
-2.  Comprobación de la Virtualización
-3.  Habilitación de la Virtualización Anidada (AMD)
-4.  Instalación de Paquetes Requeridos
-5.  Configuración de Libvirt
-6.  Configuración de la Red KVM/QEMU
+1.  [Requisitos Previos](#requisitos-previos)
+2.  [Comprobación de la Virtualización](#comprobacion-de-la-virtualizacion)
+3.  [Habilitación de la Virtualización Anidada (AMD)](#habilitacion-de-la-virtualizacion-anidada-amd)
+4.  [Instalación de Paquetes Requeridos](#instalacion-de-paquetes-requeridos)
+5.  [Configuración de Libvirt](#configuracion-de-libvirt)
+6.  [Configuración de la Red KVM/QEMU](#configuracion-de-la-red-kvmqemu)
+
 
 **1. Requisitos Previos:**
 
