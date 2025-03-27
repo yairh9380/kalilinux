@@ -1,6 +1,4 @@
-Claro, aquí tienes el documento con el formato solicitado, con cada apartado dentro de bloques de código Markdown y descripciones detalladas:
 
-```markdown
 <h1 align="center">Guía de Configuración para la Virtualización de macOS con QEMU/KVM en Linux</h1>
 
 **Sinopsis:**
@@ -83,6 +81,3 @@ sudo virsh -c qemu:///system net-autostart default
 sudo virsh -c qemu:///system net-start default
 
 echo "Configuración de virtualización de macOS aplicada con éxito!"
-```
-
-> # Descripción: Estos comandos habilitan y configuran la red virtual predeterminada para que las máquinas virtuales tengan acceso a la red.
