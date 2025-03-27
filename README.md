@@ -16,17 +16,16 @@ Este documento proporciona una guía paso a paso para configurar tu sistema Linu
 
 **1. Requisitos Previos:**
 
-```bash
+
 # Permisos de Root: Necesitas ejecutar los comandos con privilegios de root (usando `sudo`).
 # Sistema Basado en Debian/Ubuntu: Esta guía está diseñada para sistemas operativos basados en Debian o Ubuntu.
-```
+
 
 **2. Comprobación de la Virtualización:**
 > Verifica si la virtualización está habilitada en tu CPU.
 
 ```bash
-# 
-grep -E -c '(vmx|svm)' /proc/cpuinfo
+
 egrep -c '(vmx|svm)' /proc/cpuinfo
 ```
 
@@ -34,21 +33,25 @@ egrep -c '(vmx|svm)' /proc/cpuinfo
 
 **3. Habilitación de la Virtualización Anidada (AMD):**
 
+> Habilita la virtualización anidada para procesadores AMD.
+echo "Habilitando la virtualización anidada para procesadores AMD
+
+
 ```bash
-# Habilita la virtualización anidada para procesadores AMD.
-echo "Habilitando la virtualización anidada para procesadores AMD..."
 sudo modprobe -r kvm_amd
 sudo modprobe kvm_amd nested=1
-"options kvm_amd nested=1" | sudo tee /etc/modprobe.d/kvm_amd.conf
 ```
 
 > # Descripción: Estos comandos cargan el módulo KVM para AMD con soporte para virtualización anidada.
 
 **4. Instalación de Paquetes Requeridos:**
 
+ Actualiza la lista de paquetes e instala los paquetes necesarios para la virtualización. Actualizando la lista de paquetes e instalando los paquetes requeridos
+
+
+
 ```bash
-# Actualiza la lista de paquetes e instala los paquetes necesarios para la virtualización.
-echo "Actualizando la lista de paquetes e instalando los paquetes requeridos..."
+
 sudo apt update && sudo apt install -y qemu-system uml-utilities virt-manager git \
 wget libguestfs-tools p7zip-full make dmg2img tesseract-ocr \
 tesseract-ocr-eng genisoimage vim net-tools screen qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
@@ -58,16 +61,30 @@ tesseract-ocr-eng genisoimage vim net-tools screen qemu-kvm libvirt-daemon-syste
 
 **5. Configuración de Libvirt:**
 
+
+ >  Habilita e inicia el servicio libvirtd.
+
+ 
 ```bash
-# Habilita e inicia el servicio libvirtd.
 sudo systemctl enable libvirtd
 sudo systemctl start libvirtd
+```
 
-# Configura libvirtd.conf para la virtualización de macOS.
+> Configura libvirtd.conf para la virtualización de macOS.
+
+
+# 
+
+```
+
 sudo sed -i 's/#unix_sock_group = "libvirt"/unix_sock_group = "libvirt"/' /etc/libvirt/libvirtd.conf
 sudo sed -i 's/#unix_sock_rw_perms = "0770"/unix_sock_rw_perms = "0770"/' /etc/libvirt/libvirtd.conf
+```
+
 
 # Reinicia el servicio libvirtd.
+
+```
 sudo systemctl restart libvirtd
 ```
 
@@ -75,9 +92,12 @@ sudo systemctl restart libvirtd
 
 **6. Configuración de la Red KVM/QEMU:**
 
+> Asegura que la red predeterminada de KVM/QEMU esté habilitada.
+
 ```bash
-# Asegura que la red predeterminada de KVM/QEMU esté habilitada.
 sudo virsh -c qemu:///system net-autostart default
 sudo virsh -c qemu:///system net-start default
+```
 
-echo "Configuración de virtualización de macOS aplicada con éxito!"
+
+Configuración de virtualización de macOS aplicada con éxito!"
